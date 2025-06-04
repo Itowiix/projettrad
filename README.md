@@ -1,5 +1,5 @@
 # projettrad
-J'ai créé une IA de traduction, j'ai mis dans le repo le fichier de train, le modèle utilisé ainsi que le fichier d'entraînement et de tests de phrase.
+J'ai créé une IA de traduction, j'ai mis dans le repo le fichier de train, le modèle utilisé, le fichier de préparation du dataset (j'utilise sentenceîece) ainsi que le fichier d'entraînement et de tests de phrase.
 Mon problèe est que l'IA arrive à déchiffrer certains mots, donc par exemple il va traduire Dum spiro, spero. par , hope, i hope.alors que la vraie traduction est : While I breathe, I hope
 Il y a beaucoup de répétitions, assez souvent des hallucinations et de très mauvaises traductions, je ne comprends pas pourquoi.
 A noter que je suis débutant dans ce domaine, c'est mon premier projet et pour tout avouer, une grande partie du code a été rédigée par chatgpt, donc j'aurais besoin à la fois d'une aide à la confection avant tout mais également d'une aide à la compréhension.
