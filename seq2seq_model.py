@@ -18,10 +18,15 @@ class BahdanauAttention(tf.keras.layers.Layer):
 
 # === Encodeur ===
 class Encoder(tf.keras.Model):
-    def __init__(self, vocab_size, embedding_dim, enc_units):
+    def __init__(self, vocab_size, embedding_dim, enc_units, embedding_matrix):
         super(Encoder, self).__init__()
         self.enc_units = enc_units
-        self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_dim)
+        self.embedding = tf.keras.layers.Embedding(
+            vocab_size,
+            embedding_dim,
+            embeddings_initializer=tf.keras.initializers.Constant(embedding_matrix),
+            trainable=True  # ou False si tu veux figer au début
+        )
         self.lstm = tf.keras.layers.LSTM(enc_units, return_sequences=True, return_state=True)
 
     def call(self, x):
@@ -31,9 +36,14 @@ class Encoder(tf.keras.Model):
 
 # === Décodeur avec Bahdanau Attention ===
 class Decoder(tf.keras.Model):
-    def __init__(self, vocab_size, embedding_dim, dec_units):
+    def __init__(self, vocab_size, embedding_dim, dec_units, embedding_matrix):
         super(Decoder, self).__init__()
-        self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_dim)
+        self.embedding = tf.keras.layers.Embedding(
+            vocab_size,
+            embedding_dim,
+            embeddings_initializer=tf.keras.initializers.Constant(embedding_matrix),
+            trainable=True  # ou False si tu veux figer au début
+        )
         self.lstm = tf.keras.layers.LSTM(dec_units, return_sequences=True, return_state=True)
         self.attention = BahdanauAttention(dec_units)
         self.fc = tf.keras.layers.Dense(vocab_size)
