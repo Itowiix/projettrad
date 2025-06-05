@@ -25,7 +25,7 @@ class Encoder(tf.keras.Model):
             vocab_size,
             embedding_dim,
             embeddings_initializer=tf.keras.initializers.Constant(embedding_matrix),
-            trainable=True  # ou False si tu veux figer au début
+            trainable=False  # ou False si tu veux figer au début
         )
         self.lstm = tf.keras.layers.LSTM(enc_units, return_sequences=True, return_state=True)
 
